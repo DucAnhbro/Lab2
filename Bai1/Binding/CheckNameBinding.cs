@@ -22,15 +22,17 @@ namespace Bai1.Binding
 				throw new ArgumentNullException(nameof(bindingContext));
 			}
 
-			string modulName = bindingContext.ModelName;
-			ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue(modulName);
+			//Get Nodelname
+			string modelName = bindingContext.ModelName;
+
+			ValueProviderResult valueProviderResult = bindingContext.ValueProvider.GetValue(modelName);
 			if(valueProviderResult == ValueProviderResult.None)
 			{
 				return Task.CompletedTask;	
 			}
 			//Set ModelState for the value binding
 
-			bindingContext.ModelState.SetModelValue(modulName, valueProviderResult);
+			bindingContext.ModelState.SetModelValue(modelName, valueProviderResult);
 
 			string value = valueProviderResult.FirstValue;
 			if(string.IsNullOrEmpty(value))
@@ -41,7 +43,7 @@ namespace Bai1.Binding
 
 			if (s.Contains("XXX"))
 			{
-				bindingContext.ModelState.TryAddModelError(modulName, "Cannot contain this partten XXX.");
+				bindingContext.ModelState.TryAddModelError(modelName, "Cannot contain this partten XXX.");
 				return Task.CompletedTask;
 			}
 			bindingContext.Result = ModelBindingResult.Success(s.Trim());

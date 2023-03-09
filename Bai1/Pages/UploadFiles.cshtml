@@ -4,7 +4,8 @@
     <form method="post" enctype="multipart/form-data">
         <label asp-for="@Model.FileUploads"></label>
         <label asp-for="@Model.FileUploads"/>
-        <span asp-validation-information="@Model.FileUploads"></span>
+       <input type="file" id="myfile" name="@Model.FileUploads"></input>
+
 
         <button class="btn btn-primary" asp-page="UploadMulti">Upload</button>
     </form>

@@ -1,3 +1,4 @@
+using Bai1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,8 +8,8 @@ namespace Bai1.Pages
     {
         public string Mesage { get; set; }
         [BindProperty]
-        public CustomerFormModel customerInfo { get; set; }
-        public void OnGet()
+        public Models.Customer customerInfo { get; set; }
+        public void OnPost()
         {
             if (ModelState.IsValid)
             {
